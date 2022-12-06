@@ -1,25 +1,26 @@
 import "./App.css";
 import "./index.css";
-import Home from "./Pages/Home";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import TVShows from "./components/TVShows";
-import SingleMovie from './components/SingleMovie';
-import MovieDetails from './components/MovieDetails';
-// import 'bootstrap/dist/css/bootstrap.min.css';
+import SingleMovie from "./components/SingleMovie";
+import MovieDetails from "./components/MovieDetails";
+import Header from "./components/Header";
+import NavbarScreen from "./components/Navbar";
+import Footer from "./components/Footer";
+import MovieGalary from "./components/MovieGalary";
+
 function App() {
   return (
     <BrowserRouter>
-      <div classNameName="App">
-        <Home />
+      <div className="App">
+        <NavbarScreen />
         <Routes>
-          <Route
-            path="/tv-shows"
-            exact={true}
-            element={<SingleMovie />}
-          />
+          <Route path="/tv-shows" element={<Header />} />
           <Route path="/singleMovie" element={<SingleMovie />} />
           <Route path="/movieDetails" element={<MovieDetails />} />
+          <Route path="/movieGalary" element={<MovieGalary />} />
+
         </Routes>
+        <Footer />
       </div>
     </BrowserRouter>
   );

@@ -1,6 +1,9 @@
 import React from "react";
+import { Link, useLocation } from "react-router-dom";
 
-const Navbar = () => {
+const NavbarScreen = () => {
+  const location = useLocation();
+
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark">
@@ -22,24 +25,56 @@ const Navbar = () => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a className="nav-link" href="http://ubeytdemir.me/netflix-ui">
-                  Home
-                </a>
+                <Link to="/tv-shows" className="navbar-links">
+                  <div
+                    className={
+                      location.pathname === "/tv-shows"
+                        ? "nav-link active"
+                        : "nav-link"
+                    }
+                  >
+                    Home
+                  </div>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
-                  Tv Shows
-                </a>
+                <Link to="/singleMovie" className="navbar-links">
+                  <div
+                    className={
+                      location.pathname === "/singleMovie"
+                        ? "nav-link active"
+                        : "nav-link"
+                    }
+                  >
+                    SingleMovie
+                  </div>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
-                  Movies
-                </a>
+                <Link to="/movieDetails" className="navbar-links">
+                  <div
+                    className={
+                      location.pathname === "/movieDetails"
+                        ? "nav-link active"
+                        : "nav-link"
+                    }
+                  >
+                    MovieDetails
+                  </div>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
-                  Recently Added
-                </a>
+              <Link to="/movieGalary" className="navbar-links">
+                  <div
+                    className={
+                      location.pathname === "/movieGalary"
+                        ? "nav-link active"
+                        : "nav-link"
+                    }
+                  >
+                    MovieGalary
+                  </div>
+                </Link>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="#">
@@ -145,4 +180,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default NavbarScreen;

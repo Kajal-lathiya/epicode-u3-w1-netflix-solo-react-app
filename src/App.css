@@ -36,3 +36,14 @@
         transform: rotate(360deg);
     }
 }
+
+.testimonialImages {
+    height: 50vh !important;
+    width: 100vw !important;
+    object-fit: inherit;
+}
+
+.textlight {
+    color: blue;
+    font-size: 50px;
+}

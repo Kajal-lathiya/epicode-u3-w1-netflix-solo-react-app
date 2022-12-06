@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Carousel, Spinner } from "react-bootstrap";
 import "../App.css";
 
-const MovieDetails = () => {
+const MovieGalary = () => {
   const [movies, setMovies] = useState([]);
   const [loader, setLoader] = useState(true);
 
@@ -13,7 +13,7 @@ const MovieDetails = () => {
   const fetchMovieAPI = async () => {
     try {
       const response = await fetch(
-        "http://www.omdbapi.com/?i=tt3896198&apikey=c43b6121&s=harry%20potter"
+        "http://www.omdbapi.com/?i=tt3896198&apikey=c43b6121&s=The witcher"
       );
       const result = await response.json();
       if (result) {
@@ -21,14 +21,14 @@ const MovieDetails = () => {
         setLoader(false);
       }
     } catch (error) {
-        console.log("error:", error);
-        setLoader(false);
+      console.log("error:", error);
+      setLoader(false);
     }
   };
 
   return (
-    <div className="movie-gallery m-2 mt-5">
-      <h3 className="text-light mt-2 mb-2">Harry Potter</h3>
+    <div className="movie-gallery m-2">
+      <h3 className="text-light mt-2 mb-2">The Witcher</h3>
       <Carousel>
         {movies.map((movie) => (
           <Carousel.Item key={movie.imdbID}>
@@ -47,4 +47,4 @@ const MovieDetails = () => {
     </div>
   );
 };
-export default MovieDetails;
+export default MovieGalary;
