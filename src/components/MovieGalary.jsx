@@ -10,37 +10,29 @@ const MovieGalary = () => {
   const [loader, setLoader] = useState(true);
 
   useEffect(() => {
-    var config = {
-      method: "get",
-      url: `${base_url}/medias`,
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    };
-
-    axios(config)
-      .then((response) => {
-        console.log(JSON.stringify(response.data));
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    // fetchMovieAPI();
+    fetchMovieAPI();
   }, []);
 
   const fetchMovieAPI = async () => {
     try {
-      const response = await fetch(
-        `https://calm-cyan-mite-cuff.cyclic.app/medias`
-      );
-      const result = await response.json();
-      console.log("====================================");
-      console.log("result:", result);
-      console.log("====================================");
-      if (result) {
-        setMovies(result?.Search);
-        setLoader(false);
-      }
+      let config = {
+        method: "get",
+        url: `${base_url}/medias`,
+        headers: {
+          "Content-Type": "application/json"
+        }
+      };
+      axios(config)
+        .then((response) => {
+          console.log();
+          if (response?.data) {
+            setMovies(response.data);
+            setLoader(false);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     } catch (error) {
       console.log("error:", error);
       setLoader(false);
@@ -55,7 +47,7 @@ const MovieGalary = () => {
           <Carousel.Item key={movie.imdbID}>
             <img
               className="testimonialImages d-block"
-              src={movie.Poster}
+              src={movie.poster}
               alt={movie.title}
             />
             <Carousel.Caption>
