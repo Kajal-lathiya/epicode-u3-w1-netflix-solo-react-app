@@ -1,21 +1,42 @@
 import { useState, useEffect } from "react";
 import { Carousel, Spinner } from "react-bootstrap";
 import "../App.css";
+import axios from "axios";
+
+const base_url = process.env.REACT_APP_BASE_URL;
 
 const MovieGalary = () => {
   const [movies, setMovies] = useState([]);
   const [loader, setLoader] = useState(true);
 
   useEffect(() => {
-    fetchMovieAPI();
+    var config = {
+      method: "get",
+      url: `${base_url}/medias`,
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+
+    axios(config)
+      .then((response) => {
+        console.log(JSON.stringify(response.data));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    // fetchMovieAPI();
   }, []);
 
   const fetchMovieAPI = async () => {
     try {
       const response = await fetch(
-        "http://www.omdbapi.com/?i=tt3896198&apikey=c43b6121&s=The witcher"
+        `https://calm-cyan-mite-cuff.cyclic.app/medias`
       );
       const result = await response.json();
+      console.log("====================================");
+      console.log("result:", result);
+      console.log("====================================");
       if (result) {
         setMovies(result?.Search);
         setLoader(false);
